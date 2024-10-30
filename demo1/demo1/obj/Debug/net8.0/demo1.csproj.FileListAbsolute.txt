@@ -1,0 +1,15 @@
+D:\Desktop\projects\C#\CSharpStudyProject\demo1\demo1\obj\Debug\net8.0\demo1.GeneratedMSBuildEditorConfig.editorconfig
+D:\Desktop\projects\C#\CSharpStudyProject\demo1\demo1\obj\Debug\net8.0\demo1.AssemblyInfoInputs.cache
+D:\Desktop\projects\C#\CSharpStudyProject\demo1\demo1\obj\Debug\net8.0\demo1.AssemblyInfo.cs
+D:\Desktop\projects\C#\CSharpStudyProject\demo1\demo1\obj\Debug\net8.0\demo1.csproj.CoreCompileInputs.cache
+D:\Desktop\projects\C#\CSharpStudyProject\demo1\demo1\obj\Debug\net8.0\demo1.sourcelink.json
+D:\Desktop\projects\C#\CSharpStudyProject\demo1\demo1\bin\Debug\net8.0\demo1.exe
+D:\Desktop\projects\C#\CSharpStudyProject\demo1\demo1\bin\Debug\net8.0\demo1.deps.json
+D:\Desktop\projects\C#\CSharpStudyProject\demo1\demo1\bin\Debug\net8.0\demo1.runtimeconfig.json
+D:\Desktop\projects\C#\CSharpStudyProject\demo1\demo1\bin\Debug\net8.0\demo1.dll
+D:\Desktop\projects\C#\CSharpStudyProject\demo1\demo1\bin\Debug\net8.0\demo1.pdb
+D:\Desktop\projects\C#\CSharpStudyProject\demo1\demo1\obj\Debug\net8.0\demo1.dll
+D:\Desktop\projects\C#\CSharpStudyProject\demo1\demo1\obj\Debug\net8.0\refint\demo1.dll
+D:\Desktop\projects\C#\CSharpStudyProject\demo1\demo1\obj\Debug\net8.0\demo1.pdb
+D:\Desktop\projects\C#\CSharpStudyProject\demo1\demo1\obj\Debug\net8.0\demo1.genruntimeconfig.cache
+D:\Desktop\projects\C#\CSharpStudyProject\demo1\demo1\obj\Debug\net8.0\ref\demo1.dll
