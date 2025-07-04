@@ -28,8 +28,10 @@ namespace VOL.WebApi
             -----------------------------------------------------------------------------------------------------
            ｜【1】NullObjectModelValidator是一个“空”实现，它的Validate方法什么也不做，直接返回成功。                       ｜
            ｜【2】IObjectModelValidator是ASP.NET Core用于执行模型验证（例如检查[Required], [MaxLength]等特性）的核心服务。 ｜
-           ｜【3】如果启用内置的模型验证服务只需删掉这段启用代码即可.                                                       |
-           ｜【4】AddSingleton：单例模式，该类只可创建一个对象，全局访问                                                       |
+           ｜【3】如果启用内置的模型验证服务只需删掉这段启用代码即可。                                                      |
+           ｜【4】AddSingleton：单例模式，该类只可创建一个对象，全局访问                                                  |
+           ｜【5】Transient：瞬态模式，每次从DI请求该对象时，获取一个全新对象                                              |
+           ｜【6】Scoped：作用域，同一个 HTTP 请求的生命周期内，DI 容器返回相同的实例。新的 HTTP 请求到来时，创建一个新的服务实例 |
             -----------------------------------------------------------------------------------------------------
             services.AddSingleton<IObjectModelValidator>(new NullObjectModelValidator());
             
