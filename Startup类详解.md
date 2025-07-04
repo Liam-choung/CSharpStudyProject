@@ -58,21 +58,38 @@ namespace VOL.WebApi
 
             services.AddSession();
 
-
+            //注册了基于服务器内存的缓存服务（IMemoryCache）。将频繁访问但不经常变化的数据临时存储在内存中，避免每次都从数据库或其他慢速数据源中读取。
             services.AddMemoryCache();
+
+           //【1】注册了IHttpContextAccessor接口及其默认实现HttpContextAccessor。
+           //【2】在一个非Controller的类中（比如在一个单独的业务逻辑服务、工具类或单例服务里）安全地访问当前HTTP请求的上下文HttpContext。
+           //【3】HttpContext包含了关于当前请求的所有信息，如用户信息(User)、请求头(Headers)、查询字符串(Query)等。
             services.AddHttpContextAccessor();
+
+            //【1】services.AddMvc(...) 注册MVC框架所需的所有服务。
+            //【2】options.Filters.Add(typeof(ApiAuthorizeFilter)) 和 options.Filters.Add(typeof(ActionExecuteFilter)) 全局注册了两个过滤器。
+            //【3】这意味着所有的Controller Action在执行前后都会自动应用这两个过滤器
+            ⚠️ 这里仅仅是注册，若需要使用两个过滤器需要在configure函数中启用
             services.AddMvc(options =>
             {
+                ⚠️ 这里注册的过滤器是全局注册，也可以通过在controller类前以及方法前使用注解来注册过滤器
                 options.Filters.Add(typeof(ApiAuthorizeFilter));
                 options.Filters.Add(typeof(ActionExecuteFilter));
                 //  options.SuppressAsyncSuffixInActionNames = false;
             });
+
+            //【1】 AddControllers() 告诉 ASP.NET Core 扫描并激活所有带 [ApiController] 或继承自 ControllerBase 的类，才能通过路由处理 HTTP 请求
+            //【2】如果不调用 AddControllers()（或 AddMvc()），所有 ApiController 类都不会被激活，收不到任何请求，也不会生成路由映射，返回 404
+            //【3】框架默认使用的是 System.Text.Json 来做 JSON 序列化/反序列化，但它在一些高级场景下不够灵活。
+            //【4】AddNewtonsoftJson() 则是切换回 Newtonsoft.Json（也叫 Json.NET），它经过多年打磨，功能更丰富、可扩展性更强
+            //【5】注册并启用以后意味着 整个 MVC/Web API 管道 中所有数据传输都回使用序列化的数据，所有 Controller 的输入输出都用 Newtonsoft.Json
             services.AddControllers()
               .AddNewtonsoftJson(op =>
               {
                   op.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver();
                   op.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
               });
+
 
             Services.AddAuthentication(options =>
             {
