@@ -2,7 +2,8 @@
 
 - [类函数执行顺序](#类函数执行顺序)
 - [token与JWT之间关系](#token与JWT之间关系)
-- [什么是跨源配置（services.AddCors）？](#什么是跨源配置（services.AddCors）？)
+- [什么是跨源配置（services.AddCors）？](#什么是跨源配置（services.AddCors）?)
+- [依赖注入](#依赖注入)
 
 ## 类函数执行顺序
 configureservice()&nbsp;&nbsp;&nbsp;&nbsp;--->&nbsp;&nbsp;&nbsp;&nbsp;configure()
@@ -150,6 +151,7 @@ namespace VOL.WebApi
             });
             //是 ASP.NET Core 中 依赖注入（Dependency Injection, DI） 的一个典型用法，用于注册 HttpContextAccessor 服务。
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            //这里其实是多余份
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
