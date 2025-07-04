@@ -6,6 +6,7 @@ configureservice()&nbsp;&nbsp;&nbsp;&nbsp;--->&nbsp;&nbsp;&nbsp;&nbsp;configure(
 顺序不重要 &nbsp;&nbsp;&nbsp;&nbsp;     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;      管道注册顺序至关重要        
 
 :punch::punch::punch:
+
 namespace VOL.WebApi
 {
     public class Startup
