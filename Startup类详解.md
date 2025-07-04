@@ -5,7 +5,7 @@ configureservice()&nbsp;&nbsp;&nbsp;&nbsp;--->&nbsp;&nbsp;&nbsp;&nbsp;configure(
 
 顺序不重要 &nbsp;&nbsp;&nbsp;&nbsp;     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;      管道注册顺序至关重要        
 
-
+:punch::punch::punch:
 ```
 namespace VOL.WebApi
 {
@@ -25,6 +25,12 @@ namespace VOL.WebApi
             services.UseMethodsModelParameters().UseMethodsGeneralParameters();
 
             //禁用ASP.NET Core内置的模型验证功能
+            -----------------------------------------------------------------------------------------------------
+           ｜【1】NullObjectModelValidator是一个“空”实现，它的Validate方法什么也不做，直接返回成功。                       ｜
+           ｜【2】IObjectModelValidator是ASP.NET Core用于执行模型验证（例如检查[Required], [MaxLength]等特性）的核心服务。 ｜
+           ｜【3】如果启用内置的模型验证服务只需删掉这段启用代码即可.                                                       |
+           ｜【4】AddSingleton：单例模式，该类只可创建一个对象，全局访问                                                       |
+            -----------------------------------------------------------------------------------------------------
             services.AddSingleton<IObjectModelValidator>(new NullObjectModelValidator());
             
 
