@@ -90,7 +90,7 @@ namespace VOL.WebApi
                   op.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
               });
 
-
+            //在 RESTful 或前后端分离项目中，Session 不再适用，JWT 可将用户身份信息、安全声明（Claims）、过期时间等都封装在 Token 本身
             Services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -109,6 +109,8 @@ namespace VOL.WebApi
                      ValidIssuer = AppSetting.Secret.Issuer,//Issuer，这两项和前面签发jwt的设置一致
                      IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(AppSetting.Secret.JWT))
                  };
+
+
                  options.Events = new JwtBearerEvents()
                  {
                      OnChallenge = context =>
@@ -122,12 +124,14 @@ namespace VOL.WebApi
                      }
                  };
              });
-            //必须appsettings.json中配置
+
+            //必须appsettings.json中配置，配置跨源策略
             string corsUrls = Configuration["CorsUrls"];
             if (string.IsNullOrEmpty(corsUrls))
             {
                 throw new Exception("请配置跨请求的前端Url");
             }
+
             services.AddCors(options =>
             {
                 options.AddDefaultPolicy(
@@ -138,6 +142,7 @@ namespace VOL.WebApi
                             .AllowAnyHeader().AllowAnyMethod();
                         });
             });
+
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -322,3 +327,21 @@ namespace VOL.WebApi
     }
 }
 ```
+
+## token与JWT之间关系
+
+**JWT是一种token的具体实现方式**
+
+| 比较项      | Token（通用）        | JWT（JSON Web Token）              |
+| -------- | ---------------- | -------------------------------- |
+| 是否特定格式   | ❌ 无固定格式          | ✅ 标准结构（Header.Payload.Signature） |
+| 是否包含用户信息 | ❌ 不一定            | ✅ 是，Payload 中可包含 userId、role 等   |
+| 是否自包含    | ❌ 通常不是，需要服务端存储验证 | ✅ 自包含，可直接验证，无需查询数据库              |
+| 安全性      | 取决于实现            | 高，通过签名校验是否被篡改                    |
+| 易于扩展     | ❌                | ✅ 支持自定义字段（如设备、权限等）               |
+| 适用场景     | 各种认证（简单场景）       | 前后端分离、微服务、OAuth、OpenID等复杂认证      |
+
+## 什么是跨源？
+- 前端应用（例如运行在 http://localhost:3000）想要请求后端 API（例如运行在 http://localhost:5000），那么这两个是不同的源，属于跨源
+- 跨源配置：不同源的前端应用与后端 API 进行通信，需要在服务器端明确告诉浏览器哪些外部源被允许访问
+- CORS (跨域资源共享) 就是在后端配置，明确告诉浏览器，哪些前端（或者说，哪些“源”）可以访问后端提供的接口
