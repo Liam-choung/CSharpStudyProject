@@ -142,7 +142,7 @@ namespace VOL.WebApi
                             .AllowAnyHeader().AllowAnyMethod();
                         });
             });
-
+            //是 ASP.NET Core 中 依赖注入（Dependency Injection, DI） 的一个典型用法，用于注册 HttpContextAccessor 服务。
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -345,6 +345,8 @@ namespace VOL.WebApi
 - 前端应用（例如运行在 http://localhost:3000）想要请求后端 API（例如运行在 http://localhost:5000），那么这两个是不同的源，属于跨源
 - 跨源配置：不同源的前端应用与后端 API 进行通信，需要在服务器端明确告诉浏览器哪些外部源被允许访问
 - CORS (跨域资源共享) 就是在后端配置，明确告诉浏览器，哪些前端（或者说，哪些“源”）可以访问后端提供的接口
+
+  
 【1】 配置特定前端访问
 ```
 1️⃣ 配置特定前端访问 --仅允许 https://weather-app.com 访问
@@ -380,3 +382,12 @@ services.AddCors(options =>
 2️⃣ 在 Configure 方法中
 app.UseCors(); // 应用默认策略
 ```
+
+## 依赖注入
+- AddSingleton<TService, TImplementation>()是 ASP.NET Core 中 依赖注入（Dependency Injection, DI） 的一个典型用法，用于注册 HttpContextAccessor 服务。
+
+TService : 这是你希望通过依赖注入来获取的服务接口
+
+TImplementation ： 这是实现 TService 接口的具体类。当容器被要求提供TService 的实例时，它会创建一个TImplementation的实例并返回。
+
+
