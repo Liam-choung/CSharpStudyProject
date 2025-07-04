@@ -341,7 +341,42 @@ namespace VOL.WebApi
 | 易于扩展     | ❌                | ✅ 支持自定义字段（如设备、权限等）               |
 | 适用场景     | 各种认证（简单场景）       | 前后端分离、微服务、OAuth、OpenID等复杂认证      |
 
-## 什么是跨源？
+## 什么是跨源配置（services.AddCors）？
 - 前端应用（例如运行在 http://localhost:3000）想要请求后端 API（例如运行在 http://localhost:5000），那么这两个是不同的源，属于跨源
 - 跨源配置：不同源的前端应用与后端 API 进行通信，需要在服务器端明确告诉浏览器哪些外部源被允许访问
 - CORS (跨域资源共享) 就是在后端配置，明确告诉浏览器，哪些前端（或者说，哪些“源”）可以访问后端提供的接口
+【1】 配置特定前端访问
+```
+1️⃣ 配置特定前端访问 --仅允许 https://weather-app.com 访问
+// 在 ConfigureServices 方法中
+services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        builder =>
+        {
+            builder.WithOrigins("https://weather-app.com") // 只允许这个来源
+                   .AllowAnyHeader()
+                   .AllowAnyMethod();
+        });
+});
+2️⃣ 在configure方法中启用
+app.UseCors("AllowSpecificOrigin"); // 应用这个策略
+```
+
+【2】 配置所有前端都可 访问
+```
+1️⃣ 在 ConfigureServices 方法中
+services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        builder =>
+        {
+            builder.AllowAnyOrigin() // 允许所有来源
+                   .AllowAnyHeader()
+                   .AllowAnyMethod();
+        });
+});
+
+2️⃣ 在 Configure 方法中
+app.UseCors(); // 应用默认策略
+```
