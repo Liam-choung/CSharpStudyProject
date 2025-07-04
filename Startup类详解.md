@@ -6,7 +6,7 @@ configureservice()&nbsp;&nbsp;&nbsp;&nbsp;--->&nbsp;&nbsp;&nbsp;&nbsp;configure(
 顺序不重要 &nbsp;&nbsp;&nbsp;&nbsp;     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;      管道注册顺序至关重要        
 
 :punch::punch::punch:
-
+```
 namespace VOL.WebApi
 {
     public class Startup
@@ -45,6 +45,7 @@ namespace VOL.WebApi
                【1】传统MVC：页面由后端渲染生成，浏览器请求 → 后端 Controller → 渲染 HTML → 返回完整页面
                【2】RestFuL：面向资源，用 HTTP 方法来操作资源（GET/POST/PUT/DELETE），每个请求独立，不依赖 Session
                【3】前后端分离：浏览器请求前端 → 加载 Vue/React 页面 → 页面发起 AJAX 请求 → 调用后端 API → 渲染数据
+             -------------------------------------------------------------------
              | 特性      | 传统MVC      | RESTful 架构  | 前后端分离项目            |
              | -----    | --------    | ----------    | ------------------      |
              | 页面生成  | 服务端渲染    | 客户端渲染      | 客户端渲染（SPA）         |
@@ -303,4 +304,4 @@ namespace VOL.WebApi
         }
     }
 }
-
+```
