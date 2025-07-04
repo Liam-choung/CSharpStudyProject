@@ -1,10 +1,8 @@
 ## 目录
 
-
-- [类函数执行顺序](类函数执行顺序)
-
-- [token与JWT之间关系](token与JWT之间关系)
-- [什么是跨源配置（services.AddCors）？](什么是跨源配置（services.AddCors）？)
+- [类函数执行顺序](#类函数执行顺序)
+- [token与JWT之间关系](#token与JWT之间关系)
+- [什么是跨源配置（services.AddCors）？](#什么是跨源配置（services.AddCors）？)
 
 ## 类函数执行顺序
 configureservice()&nbsp;&nbsp;&nbsp;&nbsp;--->&nbsp;&nbsp;&nbsp;&nbsp;configure()
