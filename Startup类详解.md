@@ -139,6 +139,8 @@ namespace VOL.WebApi
                 throw new Exception("请配置跨请求的前端Url");
             }
 
+
+            //虽然上面读取了特定的跨源接口，但是这里使用的AddDefaultPolicy，所以接收来自所有源的请求
             services.AddCors(options =>
             {
                 options.AddDefaultPolicy(
@@ -200,8 +202,12 @@ namespace VOL.WebApi
                 options.ClientErrorMapping[404].Link =
                     "https://*/404";
             });
+            //配置启用实时通讯的功能
             services.AddSignalR();
+            
             //services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
+
+
             //services.AddTransient<IPDFService, PDFService>();
 
             services.AddHttpClient();
