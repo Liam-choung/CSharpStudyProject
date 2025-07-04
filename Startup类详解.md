@@ -1,3 +1,11 @@
+## 目录
+
+
+- [类函数执行顺序](类函数执行顺序)
+
+- [token与JWT之间关系](token与JWT之间关系)
+- [什么是跨源配置（services.AddCors）？](什么是跨源配置（services.AddCors）？)
+
 ## 类函数执行顺序
 configureservice()&nbsp;&nbsp;&nbsp;&nbsp;--->&nbsp;&nbsp;&nbsp;&nbsp;configure()
 
@@ -386,7 +394,7 @@ app.UseCors(); // 应用默认策略
 ## 依赖注入
 - AddSingleton<TService, TImplementation>()是 ASP.NET Core 中 依赖注入（Dependency Injection, DI） 的一个典型用法，用于注册 HttpContextAccessor 服务。
 
-TService : 这是你希望通过依赖注入来获取的服务接口
+TService : 这是希望通过依赖注入来获取的服务接口
 
 TImplementation ： 这是实现 TService 接口的具体类。当容器被要求提供TService 的实例时，它会创建一个TImplementation的实例并返回。
 
