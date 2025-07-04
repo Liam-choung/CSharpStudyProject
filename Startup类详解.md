@@ -38,7 +38,12 @@ namespace VOL.WebApi
 
             Services = services;
             // services.Replace( ServiceDescriptor.Transient<IControllerActivator, ServiceBasedControllerActivator>());
+
+            //用于注册Session（会话）状态管理所需的服务。Session允许在用户的多次请求之间存储特定于该用户的数据。例如，可以存储用户的购物车信息、登录状态的某些临时信息等
+            //对于REST API风格的架构更推荐使用 JWT、Token 等进行临时数据存储以代替session
             services.AddSession();
+
+
             services.AddMemoryCache();
             services.AddHttpContextAccessor();
             services.AddMvc(options =>
